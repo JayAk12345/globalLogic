@@ -21,33 +21,20 @@ medalResults = [
 
 def createMedalTable(results):
     resultsTable = {}
-    count = 0
-    for sport in medalResults:
 
-        podium = sport["podium"]
+    for dictionary in medalResults:
+        podium = dictionary["podium"]
 
-        for country in podium:
+        for currentCountry in podium:
             medalToPoints = { '1' : 3, '2' : 2, '3' : 1}
- 
-            position = country[0:1]
-            print(position, "position")
+            country = currentCountry[2:]
+            countryPosition = currentCountry[0:1]
             
-            if (resultsTable.get(country[2:]) == None):
-                count += 1
-                print(count, "count")
-                resultsTable[country[2:]] = medalToPoints[country[0:1]]
+            if (resultsTable.get(country) == None):
+                resultsTable[country] = medalToPoints[countryPosition]
             else:
-                print(medalToPoints[country[0:1]], "medal to points in else")
-                resultsTable[country[2:]] += medalToPoints[country[0:1]]
+                resultsTable[country] += medalToPoints[countryPosition]
 
-            #add score to country
-            
-          #  print(medalToPoints[1], "medalToPoints")
-            print(resultsTable["China"], "check")
-            print(resultsTable, "resultsTable")
-            print("----------------------------")
-
-    print(resultsTable)
     return resultsTable
 
 
